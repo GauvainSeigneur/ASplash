@@ -36,6 +36,10 @@ dependencies {
     // Hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
+    // Room
+    implementation "androidx.room:room-runtime:$arch_version"
+    implementation "androidx.room:room-ktx:$arch_version"
+    kapt "androidx.room:room-compiler:$arch_version"
     // OKHTTP
     def okHttpVersion = '4.10.0'
     implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
