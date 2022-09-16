@@ -35,6 +35,8 @@ android {
 }
 
 dependencies {
+    implementation project(':design')
+    implementation project(':data')
     implementation project(':domain')
     // Hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"

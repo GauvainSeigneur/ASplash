@@ -1,4 +1,6 @@
 package com.gauvain.seigneur.domain
 
-class UseCase {
+import javax.inject.Inject
+
+class UseCase @Inject constructor() {
 }
