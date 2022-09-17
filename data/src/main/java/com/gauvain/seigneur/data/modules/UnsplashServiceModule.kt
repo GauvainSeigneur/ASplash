@@ -1,5 +1,6 @@
 package com.gauvain.seigneur.data.modules
 
+import com.gauvain.seigneur.data.BuildConfig
 import com.gauvain.seigneur.data.remote.ClientIdInterceptor
 import com.gauvain.seigneur.data.remote.HeaderAccessTokenInterceptor
 import com.gauvain.seigneur.data.remote.UnsplashService
@@ -19,6 +20,7 @@ import javax.inject.Singleton
 object UnsplashServiceModule {
 
     private const val BASE_URL = "https://api.unsplash.com/"
+    private const val TIME_OUT_VALUE_SECONDS = 30L
 
     @Provides
     fun provideBaseUrl() = BASE_URL
@@ -26,17 +28,21 @@ object UnsplashServiceModule {
     @Singleton
     @Provides
     fun provideOkHttpClient(): OkHttpClient {
-        val loggingInterceptor = HttpLoggingInterceptor()
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
-        return OkHttpClient.Builder()
-            .addInterceptor(loggingInterceptor) //todo
+        val builder: OkHttpClient.Builder = OkHttpClient.Builder()
+        builder
             .addNetworkInterceptor(ClientIdInterceptor())
             .addNetworkInterceptor(HeaderAccessTokenInterceptor())
-            .connectTimeout(30L, TimeUnit.SECONDS)
-            .readTimeout(30L, TimeUnit.SECONDS)
-            .build()
-    }
+            .connectTimeout(TIME_OUT_VALUE_SECONDS, TimeUnit.SECONDS)
+            .readTimeout(TIME_OUT_VALUE_SECONDS, TimeUnit.SECONDS)
 
+        if (BuildConfig.DEBUG) {
+            val loggingInterceptor = HttpLoggingInterceptor()
+            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+            builder
+                .addInterceptor(loggingInterceptor)
+        }
+        return builder.build()
+    }
 
     @Singleton
     @Provides

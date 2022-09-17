@@ -1,5 +1,6 @@
 package com.gauvain.seigneur.data.modules
 
+import com.gauvain.seigneur.data.mapper.RemoteRequestResultMapper
 import com.gauvain.seigneur.data.remote.UnsplashService
 import com.gauvain.seigneur.data.repository.PhotoDataRepository
 import com.gauvain.seigneur.data.repository.UserDataRepository
@@ -15,11 +16,17 @@ import dagger.hilt.components.SingletonComponent
 object RepositoryModule {
 
     @Provides
-    fun provideUserDataRepository(service : UnsplashService) : UserRepository =
-        UserDataRepository(service)
+    fun provideUserDataRepository(
+        remoteRequestResultMapper: RemoteRequestResultMapper,
+        service: UnsplashService
+    ): UserRepository =
+        UserDataRepository(remoteRequestResultMapper, service)
 
     @Provides
-    fun providePhotoDataRepository(service : UnsplashService) : PhotoRepository =
-        PhotoDataRepository(service)
+    fun providePhotoDataRepository(
+        remoteRequestResultMapper: RemoteRequestResultMapper,
+        service: UnsplashService
+    ): PhotoRepository =
+        PhotoDataRepository(remoteRequestResultMapper, service)
 
 }
