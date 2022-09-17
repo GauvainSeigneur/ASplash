@@ -1,7 +1,9 @@
 package com.gauvain.seigneur.data.remote
 
 import com.gauvain.seigneur.data.model.AccessToken
+import com.gauvain.seigneur.data.model.Photo
 import com.gauvain.seigneur.data.model.UserResponse
+import retrofit2.Call
 import retrofit2.http.*
 
 interface UnsplashService {
@@ -20,10 +22,16 @@ interface UnsplashService {
     ): AccessToken
 
     @GET("me")
-    suspend fun getMe(): UserResponse
+    fun getMe(): Call<UserResponse>
+
+    @GET("me")
+    suspend fun getMeTwo(): UserResponse
 
     @GET("users/{username}")
-    suspend fun getUser(
+    fun getUser(
         @Path("username") userName: String): UserResponse
+
+    @GET("photos")
+    suspend fun getPhotos(): List<Photo>
 
 }

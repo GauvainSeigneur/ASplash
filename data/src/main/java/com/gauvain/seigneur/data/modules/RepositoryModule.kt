@@ -1,7 +1,9 @@
 package com.gauvain.seigneur.data.modules
 
 import com.gauvain.seigneur.data.remote.UnsplashService
+import com.gauvain.seigneur.data.repository.PhotoDataRepository
 import com.gauvain.seigneur.data.repository.UserDataRepository
+import com.gauvain.seigneur.domain.repository.PhotoRepository
 import com.gauvain.seigneur.domain.repository.UserRepository
 import dagger.Module
 import dagger.Provides
@@ -15,5 +17,9 @@ object RepositoryModule {
     @Provides
     fun provideUserDataRepository(service : UnsplashService) : UserRepository =
         UserDataRepository(service)
+
+    @Provides
+    fun providePhotoDataRepository(service : UnsplashService) : PhotoRepository =
+        PhotoDataRepository(service)
 
 }
