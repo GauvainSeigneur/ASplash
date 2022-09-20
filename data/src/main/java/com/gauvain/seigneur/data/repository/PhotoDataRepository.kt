@@ -13,9 +13,9 @@ class PhotoDataRepository @Inject constructor(
     private val service: UnsplashService,
 ) : BaseDataRepository(remoteRequestResultMapper), PhotoRepository {
 
-    override suspend fun getPhotos(): RemoteRequestResult<List<Photo>> {
+    override suspend fun getPhotos(page: Int, perPage: Int): RemoteRequestResult<List<Photo>> {
         return handleSplashApiCall(
-            call = {service.getPhotos()},
+            call = { service.getPhotos(page, perPage) },
             onSuccess = { photos ->
                 Log.d("PhotoDataRepository", "photos $photos")
                 photos.map { photoResponse ->

@@ -8,10 +8,10 @@ import javax.inject.Inject
 
 class GetPhotosUseCase @Inject constructor(
     private val photoRepository: PhotoRepository
-) : suspend () -> Outcome<List<Photo>, RemoteRequestError> {
+) : suspend (Int, Int) -> Outcome<List<Photo>, RemoteRequestError> {
 
-    override suspend fun invoke(): Outcome<List<Photo>, RemoteRequestError> {
-        return when (val result = photoRepository.getPhotos()) {
+    override suspend fun invoke(page: Int, perPage: Int): Outcome<List<Photo>, RemoteRequestError> {
+        return when (val result = photoRepository.getPhotos(page, perPage)) {
             is RemoteRequestResult.Success -> {
                 Outcome.Success(result.data)
             }

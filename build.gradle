@@ -9,6 +9,8 @@ buildscript {
         androidx_compose_version = "1.2.1"
         androidx_compose_activity_version = "1.5.1"
         ktx_core_version = "1.9.0"
+        andoridx_paging_runtime_version = "3.1.1"
+        andoridx_paging_compose_version = "1.0.0-alpha16"
     }
     dependencies {
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"

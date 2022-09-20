@@ -4,5 +4,5 @@ import com.gauvain.seigneur.domain.model.Photo
 import com.gauvain.seigneur.domain.model.requestException.RemoteRequestResult
 
 interface PhotoRepository {
-    suspend fun getPhotos(): RemoteRequestResult<List<Photo>>
+    suspend fun getPhotos(page:Int, perPage:Int): RemoteRequestResult<List<Photo>>
 }
