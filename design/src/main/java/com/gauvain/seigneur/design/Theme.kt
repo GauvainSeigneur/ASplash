@@ -95,7 +95,7 @@ fun ASplashTheme(
     MaterialTheme(
         colorScheme = colors,
         shapes = Shapes,
-        typography = Typography,
+        //typography = Typography,
         content = content,
     )
 }

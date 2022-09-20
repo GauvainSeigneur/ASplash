@@ -28,19 +28,31 @@ android {
         jvmTarget = '1.8'
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.2.0-alpha08"
+        kotlinCompilerExtensionVersion = "1.3.1"
     }
     buildFeatures {
         compose true
     }
+    namespace 'com.gauvain.seigneur.design'
 }
 
 dependencies {
     implementation "androidx.core:core-ktx:$ktx_core_version"
-
-    implementation "androidx.compose.material3:material3:$compose_material_3_version"
-    implementation "androidx.compose.material3:material3-window-size-class:$compose_material_3_version"
-    implementation "com.google.accompanist:accompanist-systemuicontroller:0.26.3-beta"
+    // Compose
+    api "androidx.compose.material3:material3:$compose_material_3_version"
+    api "androidx.compose.material3:material3-window-size-class:$compose_material_3_version"
+    api "androidx.compose.material:material-icons-core:$androidx_compose_version"
+    api "androidx.compose.material:material-icons-extended:$androidx_compose_version"
+    api "androidx.compose.animation:animation:$androidx_compose_version"
+    api "androidx.compose.animation:animation-core:$androidx_compose_version"
+    api "androidx.compose.animation:animation-graphics:$androidx_compose_version"
+    api "androidx.compose.ui:ui:$androidx_compose_version"
+    api "androidx.compose.ui:ui-tooling:$androidx_compose_version"
+    api "androidx.compose.foundation:foundation:$androidx_compose_version"
+    api "androidx.compose.runtime:runtime-livedata:$androidx_compose_version"
+    api "androidx.activity:activity-compose:$androidx_compose_activity_version"
+    // accompanist for Compose
+    api "com.google.accompanist:accompanist-systemuicontroller:0.26.3-beta"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

@@ -17,7 +17,6 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -31,13 +30,25 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    build
+    namespace 'com.gauvain.seigneur.asplash'
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.3.1"
+    }
+    buildFeatures {
+        compose true
+    }
 }
 
 dependencies {
     implementation project(':design')
     implementation project(':data')
     implementation project(':domain')
+
+    // Paging
+    implementation "androidx.paging:paging-runtime:3.1.1"
+    implementation "androidx.paging:paging-compose:1.0.0-alpha16"
+
+
     // Hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
