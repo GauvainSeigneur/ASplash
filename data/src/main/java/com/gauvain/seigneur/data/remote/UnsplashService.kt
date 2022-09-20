@@ -1,7 +1,7 @@
 package com.gauvain.seigneur.data.remote
 
 import com.gauvain.seigneur.data.model.AccessToken
-import com.gauvain.seigneur.data.model.Photo
+import com.gauvain.seigneur.data.model.photo.Photo
 import com.gauvain.seigneur.data.model.UserResponse
 import retrofit2.Call
 import retrofit2.http.*

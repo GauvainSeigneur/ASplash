@@ -1,14 +1,16 @@
 package com.gauvain.seigneur.data.repository
 
 import android.util.Log
+import com.gauvain.seigneur.data.mapper.RemoteRequestResultMapper
 import com.gauvain.seigneur.data.remote.UnsplashService
 import com.gauvain.seigneur.domain.repository.UserRepository
 import com.gauvain.seigneur.domain.model.User
 import javax.inject.Inject
 
 class UserDataRepository @Inject constructor(
-    private val service: UnsplashService
-) : BaseDataRepository(), UserRepository {
+    remoteRequestResultMapper: RemoteRequestResultMapper,
+    private val service: UnsplashService,
+) : BaseDataRepository(remoteRequestResultMapper), UserRepository {
 
     override suspend fun getMe(): User {
         handleSplashApiCall(
@@ -18,11 +20,11 @@ class UserDataRepository @Inject constructor(
 
             },
             onError = { a, b ->
-                Log.d("lolilol", "a $a, b $b")
+                Log.d("UserDataRepository", "a $a, b $b")
             }
         )
 
-        return User(id = "userId")
+        return User(id = "userId") //todo - clean it
     }
 
     override suspend fun getUser(userName: String): User {
