@@ -19,7 +19,8 @@ import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
-import com.gauvain.seigneur.design.ThemedContent
+import com.gauvain.seigneur.design.pagination.PaginatedList
+import com.gauvain.seigneur.design.theme.ThemedContent
 import com.gauvain.seigneur.domain.model.Photo
 import com.gauvain.seigneur.domain.usecase.GetMeUseCase
 import com.gauvain.seigneur.domain.usecase.GetPhotosUseCase
@@ -50,7 +51,7 @@ class MainActivity : AppCompatActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-         
+
         setContent {
             val photosData = viewModel.photoPager.collectAsLazyPagingItems()
             ThemedContent {
@@ -70,45 +71,6 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                 )
-
-                /* SwipeRefresh(
-                     state = swipeRefreshState,
-                     onRefresh = {
-                         refreshing = true
-                         photosData.refresh()
-                     },
-                 ) {
-                     LazyColumn {
-                         items(photosData) { photo ->
-                             // when item are append refresh is done
-                             refreshing = false
-                             Card(modifier = Modifier.padding(8.dp)) {
-                                 Text(text = photo?.id ?: "noId")
-                             }
-                         }
-                         when (photosData.loadState.append) {
-                             is LoadState.NotLoading -> Unit
-                             LoadState.Loading -> {
-                                 if (photosData.itemCount < 0) {
-                                     Log.d("blablbla", "first load")
-                                 }
-                                 item {
-                                     Card(modifier = Modifier.padding(8.dp)) {
-                                         Text(text = "loading item")
-                                     }
-                                 }
-                             }
-                             is LoadState.Error -> {
-                                 item {
-                                     Card(modifier = Modifier.padding(8.dp)) {
-                                         Text(text = (photosData.loadState.append as LoadState.Error).error.message.toString())
-                                     }
-                                 }
-                             }
-                         }
-
-                     }
-                 }*/
 
                 /*Column {
                     Text(text = "Text example")
@@ -134,71 +96,6 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-        }
-    }
-
-    @Composable
-    fun <T : Any> PaginatedList(
-        lazyPagingItems: LazyPagingItems<T>,
-        item: @Composable (T?) -> Unit,
-        loadingItem: @Composable () -> Unit,
-        failLoadItem: @Composable (LoadState.Error) -> Unit,
-    ) {
-        var refreshing by remember { mutableStateOf(false) }
-        val swipeRefreshState = rememberSwipeRefreshState(refreshing)
-
-        SwipeRefresh(
-            state = swipeRefreshState,
-            onRefresh = {
-                refreshing = true
-                lazyPagingItems.refresh()
-            },
-        ) {
-            // handle first load
-            when (lazyPagingItems.loadState.refresh) {
-                is LoadState.NotLoading -> {
-                    //todo - remove big first view
-                    Log.d("weshalors", "refresh a")
-                }
-                is LoadState.Loading -> {
-                    if(lazyPagingItems.itemCount > 0) {
-                        // todo - here we refresh an existing list, so we do not need to display the big view
-                        Log.d("weshalors", "refresh b 1")
-                    } else {
-                        // todo - display first big view
-                        Log.d("weshalors", "refresh b 2")
-                    }
-                }
-                is LoadState.Error -> {
-                    // todo - display first big view
-                    Log.d("weshalors", "refresh c")
-                }
-            }
-
-            LazyColumn {
-                // populate when new items are added
-                items(lazyPagingItems) { photo ->
-                    // when item are append refresh is done
-                    refreshing = false
-                    item(photo)
-                }
-                Log.d("weshalors", "lol ${lazyPagingItems.loadState}")
-                // handle next loads
-                when (lazyPagingItems.loadState.append) {
-                    is LoadState.NotLoading -> Unit
-                    LoadState.Loading -> {
-                        item {
-                            loadingItem()
-                        }
-                    }
-                    is LoadState.Error -> {
-                        Log.d("lolilol", "lol error")
-                        item {
-                            failLoadItem(lazyPagingItems.loadState.append as LoadState.Error)
-                        }
-                    }
-                }
-            }
         }
     }
 

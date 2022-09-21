@@ -1,4 +1,4 @@
-package com.gauvain.seigneur.design
+package com.gauvain.seigneur.design.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
@@ -98,4 +98,11 @@ fun ASplashTheme(
         //typography = Typography,
         content = content,
     )
+}
+
+@Composable
+fun ThemedContent(content: @Composable () -> Unit) {
+    ASplashTheme {
+        content()
+    }
 }

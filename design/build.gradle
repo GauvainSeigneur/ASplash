@@ -51,8 +51,11 @@ dependencies {
     api "androidx.compose.foundation:foundation:$androidx_compose_version"
     api "androidx.compose.runtime:runtime-livedata:$androidx_compose_version"
     api "androidx.activity:activity-compose:$androidx_compose_activity_version"
+    api "androidx.paging:paging-compose:$andoridx_paging_compose_version"
     // accompanist for Compose
     api "com.google.accompanist:accompanist-systemuicontroller:0.26.3-beta"
+    api "com.google.accompanist:accompanist-swiperefresh:0.26.3-beta"
+
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

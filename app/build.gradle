@@ -47,9 +47,6 @@ dependencies {
     implementation "androidx.core:core-ktx:$ktx_core_version"
     // Paging
     implementation "androidx.paging:paging-runtime:$andoridx_paging_runtime_version"
-    implementation "androidx.paging:paging-compose:$andoridx_paging_compose_version"
-    // accompanist for Compose - SwipeRefresh
-    implementation "com.google.accompanist:accompanist-swiperefresh:0.26.3-beta"
     // Hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"

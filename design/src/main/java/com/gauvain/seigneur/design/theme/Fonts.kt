@@ -1,4 +1,4 @@
-package com.gauvain.seigneur.design
+package com.gauvain.seigneur.design.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
