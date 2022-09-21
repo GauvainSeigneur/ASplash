@@ -1,4 +1,4 @@
-package com.gauvain.seigneur.data.modules
+package com.gauvain.seigneur.databinder
 
 import com.gauvain.seigneur.data.BuildConfig
 import com.gauvain.seigneur.data.remote.ClientIdInterceptor

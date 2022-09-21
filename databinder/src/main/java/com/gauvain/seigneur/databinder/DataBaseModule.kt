@@ -1,4 +1,4 @@
-package com.gauvain.seigneur.data.modules
+package com.gauvain.seigneur.databinder
 
 import android.content.Context
 import androidx.room.Room

@@ -4,6 +4,7 @@
     <bytecodeTargetLevel target="1.8">
       <module name="ASplash.app" target="11" />
       <module name="ASplash.data" target="11" />
+      <module name="ASplash.databinder" target="11" />
       <module name="ASplash.design" target="11" />
       <module name="ASplash.mylibrary" target="11" />
     </bytecodeTargetLevel>
